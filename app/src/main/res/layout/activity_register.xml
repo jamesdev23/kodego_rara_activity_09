@@ -8,7 +8,7 @@
     tools:context=".RegisterActivity">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/registerusername"
+        android:id="@+id/registerfirstname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5sp"
@@ -19,11 +19,50 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/registerusernametext"
+            android:id="@+id/registerfirstnametext"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Username"
+            android:hint="First Name"
             android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/registerlastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@+id/registerfirstname"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="5sp">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/registerlastnametext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Last Name"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/registeremail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@+id/registerlastname"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="5sp">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/registeremailtext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Email"
+            android:maxLines="1" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -31,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@+id/registerusername"
+        app:layout_constraintTop_toBottomOf="@+id/registeremail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:padding="5sp">
@@ -68,26 +107,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/registeremail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@+id/registerconfirmpassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:padding="5sp">
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/registeremailtext"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Email Address"
-            android:maxLines="1" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
@@ -97,6 +116,6 @@
         android:text="Register"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registeremail" />
+        app:layout_constraintTop_toBottomOf="@+id/registerconfirmpassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
