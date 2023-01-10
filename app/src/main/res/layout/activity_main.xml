@@ -9,11 +9,19 @@
     android:weightSum="10"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Class Student List"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_weight="0.5"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_weight="9.5"
         />
 
 </LinearLayout>
