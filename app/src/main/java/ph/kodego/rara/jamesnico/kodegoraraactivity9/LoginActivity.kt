@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
 
         Snackbar.make(binding.root,
             "${data!!.getStringExtra("result")}",
-            Snackbar.LENGTH_INDEFINITE).show()
+            Snackbar.LENGTH_LONG).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
