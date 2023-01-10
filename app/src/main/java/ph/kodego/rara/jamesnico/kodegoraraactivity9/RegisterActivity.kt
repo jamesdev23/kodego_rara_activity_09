@@ -2,15 +2,15 @@ package ph.kodego.rara.jamesnico.kodegoraraactivity9
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.ActivityMainBinding
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.ActivityRegisterBinding
 
-class MainActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 }
