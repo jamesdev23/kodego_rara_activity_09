@@ -11,4 +11,7 @@
     <string name="registerpassword">Password</string>
     <string name="registerconfirm_password">Confirm Password</string>
     <string name="registerregister">Register</string>
+    <string name="forgetpasswordemail">Email</string>
+    <string name="send_password">Send Password</string>
+    <string name="class_student_list">Class Student List</string>
 </resources>
