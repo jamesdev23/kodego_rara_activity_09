@@ -11,6 +11,11 @@ import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.Student
 class StudentAdapter (var students: ArrayList<Student>)
     : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>(){
 
+    fun addStudent(student: Student){
+        students.add(0,student)
+        notifyItemInserted(0)
+    }
+
     override fun getItemCount(): Int {
         return students.size
     }
