@@ -16,6 +16,7 @@ Create table 'student_personal_info'(
   contact_number double
 );
 
+
 Create table 'student_class_info'(
   class_directory_id integer,
   student_class_info_id integer,
