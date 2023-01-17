@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.ActivityLoginBinding
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.tab_viewpager.ViewPagerActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -34,17 +35,17 @@ class LoginActivity : AppCompatActivity() {
             password = binding.passwordtext.text.toString()
 
 
-            var goToHome = Intent(this, MainActivity::class.java)
+            var goToMain = Intent(this, ViewPagerActivity::class.java)
 
 
             val bundle = Bundle()
             bundle.putString("username",username)
             bundle.putString("password",password)
-            goToHome.putExtras(bundle)
+            goToMain.putExtras(bundle)
 
-            goToHome.putExtra("source","from_login")
+            goToMain.putExtra("source","from_login")
 
-            startActivity(goToHome)
+            startActivity(goToMain)
             finish()
         }
 
