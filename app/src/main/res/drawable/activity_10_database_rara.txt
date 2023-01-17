@@ -2,23 +2,25 @@ Create table 'class_directory'(
   class_directory_id integer,
   student_name varchar[75],
   student_type varchar[75],
-  course_taken varchar[75],
-  student_info varchar[75],
   student_status varchar[75]
 );
 
-Create table 'student_info'(
+Create table 'student_personal_info'(
   class_directory_id integer,
-  student_info_id integer,    
+  student_personal_info_id integer,
   first_name varchar[75],
   middle_name varchar[75],
   last_name varchar[75],
+  address varchar[75],
+  email varchar[75],
+  contact_number double
+);
+
+Create table 'student_class_info'(
+  class_directory_id integer,
+  student_class_info_id integer,
+  class_taken varchar[75],
   class_start_date varchar[75],
   class_end_date varchar[75]
 );
-  
-Create table 'student_status'(
-  student_id integer,
-  student_status_id integer,
-  student_status varchar
-);
+
