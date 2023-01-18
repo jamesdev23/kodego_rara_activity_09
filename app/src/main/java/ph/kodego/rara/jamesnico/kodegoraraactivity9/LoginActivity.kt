@@ -35,17 +35,17 @@ class LoginActivity : AppCompatActivity() {
             password = binding.passwordtext.text.toString()
 
 
-            var goToMain = Intent(this, ViewPagerActivity::class.java)
+            var goToViewPager = Intent(this, ViewPagerActivity::class.java)
 
 
             val bundle = Bundle()
             bundle.putString("username",username)
             bundle.putString("password",password)
-            goToMain.putExtras(bundle)
+            goToViewPager.putExtras(bundle)
 
-            goToMain.putExtra("source","from_login")
+            goToViewPager.putExtra("source","from_login")
 
-            startActivity(goToMain)
+            startActivity(goToViewPager)
             finish()
         }
 

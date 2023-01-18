@@ -17,7 +17,6 @@ class ViewPagerActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         var fragmentAdapter = FragmentAdapter(supportFragmentManager, lifecycle)
-        var tabs: ArrayList<String> = ArrayList()
 
         fragmentAdapter.addFragment(ListFragment())
         fragmentAdapter.addFragment(SearchFragment())
@@ -25,9 +24,10 @@ class ViewPagerActivity : AppCompatActivity() {
 
         with(binding.viewPager2){
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
-//            setPageTransformer(ZoomOutPageTransformer())
             adapter = fragmentAdapter
         }
+
+        var tabs: ArrayList<String> = ArrayList()
 
         tabs.add("List")
         tabs.add("Search")
