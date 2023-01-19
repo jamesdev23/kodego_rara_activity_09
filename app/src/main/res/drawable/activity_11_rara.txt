@@ -1,19 +1,11 @@
 Create table 'student'(
   student_id integer,
-  lastname varchar[75],
   firstname varchar[75],
   middlename varchar[75],
+  lastname varchar[75],
   address varchar[75],
   birthday varchar[75],
   year_entered varchar[75]
-);
-
-Create table 'login_info'(
-  login_info_id integer,
-  student_id integer,
-  username varchar[75],
-  password varchar[75],
-  login_status varchar[75]
 );
 
 Create table 'certificate_student'(
@@ -56,12 +48,51 @@ Create table 'student_status'(
   student_status_type varchar[75]
 );
 
-// activity 12
+Create table 'login'(
+  login_id integer,
+  student_id integer,
+  username varchar[75],
+  password varchar[75],
+  logged_in_status varchar[75]
+);
 
 Insert into 'student'(
-  student_id,lastname,firstname,middlename,address,birthday,year_entered)
-  values (
-  1,"Rara","James Nico","F","address","birthday","year"),
-
-// tbc
+  student_id,
+  firstname,
+  middlename,
+  lastname,
+  address,
+  birthday,
+  year_entered) values
+  (1,"James Nico","","Rara","","",""),
+  (2,"Dave","","Navor","","",""),
+  (3,"Janreign","","Aragon","","",""),
+  (4,"John Rey","","Balais","","",""),
+  (5,"Joni","","James","","",""),
+  (6,"Jp","","Soriano","","",""),
+  (7,"Matthew","","Mottos","","",""),
+  (8,"Rene","","Palma","","",""),
+  (9,"Victor","","Yu","","",""),
+  (10,"Nicole", "","Bradley","","",""),
+  (11,"Dana","","Watkins","","",""),
+  (12,"Kathryn","","Mullins","","",""),
+  (13,"Courtney","","Thompson","","",""),
+  (14,"James","","Tapia","","",""),
+  (15,"Robert","","Wade","","",""),
+  (16,"Teresa","","Spencer","","",""),
+  (17,"Jasmine","","Mullen","","",""),
+  (18,"Dawn","","Parks","","",""),
+  (19,"Amanda","","Howard","","",""),
+  (20,"Nathaniel","","Vaughan","","",""),
+  (21,"Caroline","","Tate","","",""),
+  (22,"Sarah","","Ford","","",""),
+  (23,"Jerome","","Nelson","","",""),
+  (24,"Ryan","","Costa","","",""),
+  (25,"Scott","","Mccarty","","",""),
+  (26,"Maria","","Young","","",""),
+  (27,"Sarah","","Frost","","",""),
+  (28,"Pamela","","Davis","","",""),
+  (29,"Renee","","Miller","","",""),
+  (30,"Christina","","James","","","")
+);
 
