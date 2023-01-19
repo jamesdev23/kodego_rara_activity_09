@@ -1,30 +1,58 @@
-Create table 'class_directory'(
-  class_directory_id integer,
-  student_name varchar[75],
-  student_type varchar[75],
-  student_status varchar[75]
+Create table 'student_directory'(
+  student_directory_id integer,
+  username varchar[75],
+  password varchar[75],
+  login_status varchar[75]
 );
 
-Create table 'student_personal_info'(
-  class_directory_id integer,
-  student_personal_info_id integer,
-  first_name varchar[75],
-  middle_name varchar[75],
-  last_name varchar[75],
+Create table 'student'(
+  student_id integer,
+  student_directory_id integer,
+  lastname varchar[75],
+  firstname varchar[75],
+  lastname varchar[75],
   address varchar[75],
-  email varchar[75],
-  contact_number varchar[75]
+  birthday varchar[75],
+  year_entered varchar[75]
 );
 
 
-Create table 'student_class_info'(
-  class_directory_id integer,
-  student_class_info_id integer,
-  class_taken varchar[75],
-  class_start_date varchar[75],
-  class_end_date varchar[75],
-  days_attended varchar[75],
-  number_of_absences integer,
-  number_of_unexcused_absences integer
+Create table 'certificate_student'(
+  certificate_student_id integer,
+  student_id integer,
+  course_taken varchar[75]
 );
 
+Create table 'undergraduate_student'(
+  undergraduate_student_id integer,
+  student_id integer,
+  college_list varchar[75],
+  year_joined varchar[75],
+  degree_taken varchar[75],
+  degree_start varchar[75],
+  year_of_degree double,
+  student_status varchar[75],
+  college_degree_end varchar[75]
+);
+
+Create table 'master_student'(
+  master_student integer,
+  student_id integer,
+  college_list varchar[75],
+  year_joined varchar[75],
+  master_degree_taken varchar[75]
+);
+
+Create table 'graduate_student'(
+  graduate_student_id integer,
+  student_id integer,
+  college_list varchar[75],
+  year_joined varchar[75],
+  graduate_degree_taken varchar[75]
+);
+
+Create table 'student_status'(
+  student_status_id integer,
+  student_directory_id integer,
+  status_type varchar[75]
+);
