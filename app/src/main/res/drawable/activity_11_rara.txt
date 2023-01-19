@@ -1,21 +1,12 @@
-Create table 'student_directory'(
-  student_directory_id integer,
-  username varchar[75],
-  password varchar[75],
-  login_status varchar[75]
-);
-
 Create table 'student'(
   student_id integer,
-  student_directory_id integer,
   lastname varchar[75],
   firstname varchar[75],
-  lastname varchar[75],
+  middlename varchar[75],
   address varchar[75],
   birthday varchar[75],
   year_entered varchar[75]
 );
-
 
 Create table 'certificate_student'(
   certificate_student_id integer,
@@ -53,6 +44,16 @@ Create table 'graduate_student'(
 
 Create table 'student_status'(
   student_status_id integer,
-  student_directory_id integer,
-  status_type varchar[75]
+  undergraduate_student_id integer,
+  student_status_type varchar[75]
 );
+
+// activity 12
+
+Insert into 'student'(
+  student_id,lastname,firstname,middlename,address,birthday,year_entered)
+  values (
+  1,"Rara","James Nico","F","address","birthday","year"),
+
+// tbc
+
