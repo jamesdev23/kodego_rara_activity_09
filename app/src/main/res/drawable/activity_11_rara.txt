@@ -93,6 +93,5 @@ Insert into 'student'(
   (27,"Sarah","","Frost","","",""),
   (28,"Pamela","","Davis","","",""),
   (29,"Renee","","Miller","","",""),
-  (30,"Christina","","James","","","")
-);
+  (30,"Christina","","James","","","");
 
