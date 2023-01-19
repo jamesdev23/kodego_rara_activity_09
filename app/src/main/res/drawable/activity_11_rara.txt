@@ -8,6 +8,14 @@ Create table 'student'(
   year_entered varchar[75]
 );
 
+Create table 'login_info'(
+  login_info_id integer,
+  student_id integer,
+  username varchar[75],
+  password varchar[75],
+  login_status varchar[75]
+);
+
 Create table 'certificate_student'(
   certificate_student_id integer,
   student_id integer,
