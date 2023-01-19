@@ -31,10 +31,7 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         init()
-
         studentAdapter = StudentAdapter(students)
         binding.list.layoutManager = LinearLayoutManager(activity)
         binding.list.adapter = studentAdapter
