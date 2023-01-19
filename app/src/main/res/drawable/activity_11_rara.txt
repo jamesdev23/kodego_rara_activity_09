@@ -26,6 +26,12 @@ Create table 'undergraduate_student'(
   college_degree_end varchar[75]
 );
 
+Create table 'student_status'(
+  student_status_id integer,
+  undergraduate_student_id integer,
+  student_status_type varchar[75]
+);
+
 Create table 'master_student'(
   master_student integer,
   student_id integer,
@@ -40,12 +46,6 @@ Create table 'graduate_student'(
   college_list varchar[75],
   year_joined varchar[75],
   graduate_degree_taken varchar[75]
-);
-
-Create table 'student_status'(
-  student_status_id integer,
-  undergraduate_student_id integer,
-  student_status_type varchar[75]
 );
 
 Create table 'login'(
