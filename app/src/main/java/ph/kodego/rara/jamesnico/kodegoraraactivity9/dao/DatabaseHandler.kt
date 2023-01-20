@@ -14,8 +14,8 @@ class DatabaseHandler (context: Context) : SQLiteOpenHelper(context,DATABASENAME
         val studentId = "id"
         val studentFirstName = "firstname"
         val studentLastName = "lastname"
-        val studentImage = "img"
         val studentMiddleName = "middlename"
+        val studentImage = "image"
         val studentAddress = "address"
         val studentBirthday = "birthday"
         val studentYearEntered = "year_entered"
@@ -34,38 +34,36 @@ class DatabaseHandler (context: Context) : SQLiteOpenHelper(context,DATABASENAME
 
         db?.execSQL(CREATESTUDENTSTABLE)
 
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Rara', 'James Nico', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Navor', 'Dave', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Aragon', 'Janreign', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Balais', 'John Rey', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('James', 'Joni', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Soriano', 'JP', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Mottos', 'Matthew', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Palma', 'Rene', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Yu', 'Victor', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Bradley', 'Nicole', icon_male)")
-
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Watkins', 'Dana', icon_female)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Mullins', 'Kathryn', icon_female)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Thompson', 'Courtney', icon_female)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Tapia', 'James', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Wade', 'Robert', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Spencer', 'Teresa', icon_female)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Mullen', 'Jasmine', icon_female)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Parks', 'Dawn', icon_female)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Howard', 'Amanda', icon_female)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Vaughan', 'Nathaniel', icon_male)")
-
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Tate', 'Caroline', icon_female)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Ford', 'Sarah', icon_female)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Nelson', 'Jerome', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Costa', 'Ryan', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Mccarty', 'Scott', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Young', 'Maria', icon_female)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Frost', 'Sarah', icon_female)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Davis', 'Pamela', icon_female)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('Miller', 'Renee', icon_male)")
-        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName, $studentImage) values ('James', 'Christina', icon_female)")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Rara', 'James Nico')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Navor', 'Dave')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Aragon', 'Janreign')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Balais', 'John Rey')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('James', 'Joni')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Soriano', 'JP')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Mottos', 'Matthew')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Palma', 'Rene')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Yu', 'Victor')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Bradley', 'Nicole')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Watkins', 'Dana')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Mullins', 'Kathryn')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Thompson', 'Courtney')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Tapia', 'James')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Wade', 'Robert')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Spencer', 'Teresa')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Mullen', 'Jasmine')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Parks', 'Dawn')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Howard', 'Amanda')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Vaughan', 'Nathaniel')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Tate', 'Caroline')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Ford', 'Sarah')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Nelson', 'Jerome')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Costa', 'Ryan')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Mccarty', 'Scott')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Young', 'Maria')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Frost', 'Sarah')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Davis', 'Pamela')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Miller', 'Renee')")
+        db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('James', 'Christina')")
 
     }
 

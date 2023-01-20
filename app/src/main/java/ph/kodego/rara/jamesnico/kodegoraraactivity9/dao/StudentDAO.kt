@@ -19,7 +19,6 @@ class StudentDAOSQLImpl(var context: Context): StudentDAO{
         val contentValues = ContentValues()
         contentValues.put(DatabaseHandler.studentFirstName, student.firstName)
         contentValues.put(DatabaseHandler.studentLastName, student.lastName)
-        contentValues.put(DatabaseHandler.studentImage, student.img)
 
         val success = db.insert(DatabaseHandler.tableStudents,null,contentValues)
         db.close()
