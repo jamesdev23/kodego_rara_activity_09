@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.adapter.StudentAdapter
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAO
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAOSQLImpl
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.FragmentListBinding
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.Student
 
@@ -16,6 +18,7 @@ class ListFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var studentAdapter:StudentAdapter
     private var students: ArrayList<Student> = ArrayList()
+    private lateinit var dao: StudentDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +34,10 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
+
+        dao = activity?.let { StudentDAOSQLImpl(it) }!!
+        students = dao.getStudents()
+
         studentAdapter = StudentAdapter(students)
         binding.list.layoutManager = LinearLayoutManager(activity)
         binding.list.adapter = studentAdapter
@@ -41,18 +47,6 @@ class ListFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
 
-    }
-
-    fun init(){
-        students.add(Student("Janreign", "Aragon"))
-        students.add(Student("John Rey", "Balais"))
-        students.add(Student("Joni", "James"))
-        students.add(Student("Matthew", "Mottos"))
-        students.add(Student("Dave", "Navor"))
-        students.add(Student("Rene", "Palma"))
-        students.add(Student("James Nico", "Rara"))
-        students.add(Student("Jp", "Soriano"))
-        students.add(Student("Victor", "Yu"))
     }
 
 }

@@ -34,14 +34,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun init(){
-        students.add(Student("Dave", "Navor"))
-        students.add(Student("James Nico", "Rara"))
-        students.add(Student("Janreign", "Aragon"))
-        students.add(Student("John Rey", "Balais"))
-        students.add(Student("Joni", "James"))
-        students.add(Student("Jp", "Soriano"))
-        students.add(Student("Matthew", "Mottos"))
-        students.add(Student("Rene", "Palma"))
-        students.add(Student("Victor", "Yu"))
+        students.add(Student("Dave", "Navor", R.drawable.placeholder))
+        students.add(Student("James Nico", "Rara", R.drawable.placeholder))
+        students.add(Student("Janreign", "Aragon", R.drawable.placeholder))
+        students.add(Student("John Rey", "Balais", R.drawable.placeholder))
+        students.add(Student("Joni", "James", R.drawable.placeholder))
+        students.add(Student("Jp", "Soriano", R.drawable.placeholder))
+        students.add(Student("Matthew", "Mottos", R.drawable.placeholder))
+        students.add(Student("Rene", "Palma", R.drawable.placeholder))
+        students.add(Student("Victor", "Yu", R.drawable.placeholder))
     }
 }

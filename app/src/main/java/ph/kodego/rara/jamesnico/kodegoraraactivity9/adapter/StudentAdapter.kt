@@ -49,6 +49,7 @@ class StudentAdapter (var students: ArrayList<Student>)
             this.student = student
 
             itemBinding.studentName.setText("${student.lastName}, ${student.firstName}")
+            itemBinding.profilePicture.setImageResource(student.img)
         }
 
         override fun onClick(v: View?) {
