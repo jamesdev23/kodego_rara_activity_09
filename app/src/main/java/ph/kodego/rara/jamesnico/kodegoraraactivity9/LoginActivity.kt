@@ -5,13 +5,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.LoginDAO
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.LoginDAOSQLImpl
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAO
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAOSQLImpl
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.ActivityLoginBinding
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.Login
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.Student
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.tab_viewpager.ViewPagerActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var username: String
     private lateinit var password: String
+
+    private lateinit var dao: LoginDAO
+    private var checkLogin: Boolean = false
 
     private val launchRegister = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -37,16 +46,16 @@ class LoginActivity : AppCompatActivity() {
 
             var goToViewPager = Intent(this, ViewPagerActivity::class.java)
 
-
             val bundle = Bundle()
-            bundle.putString("username",username)
-            bundle.putString("password",password)
+            bundle.putString("username", username)
+            bundle.putString("password", password)
             goToViewPager.putExtras(bundle)
 
-            goToViewPager.putExtra("source","from_login")
+            goToViewPager.putExtra("source", "from_login")
 
             startActivity(goToViewPager)
             finish()
+
         }
 
         // on register button press
@@ -55,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
             launchRegister.launch(goToRegister)
         }
 
-        // on forgetpassword press
+        // on forget password press
         binding.btnForgetpassword.setOnClickListener {
             var goToForgetPassword = Intent(this, ForgetPasswordActivity::class.java)
             launchRegister.launch(goToForgetPassword)

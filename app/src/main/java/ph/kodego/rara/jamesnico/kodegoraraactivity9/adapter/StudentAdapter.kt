@@ -1,19 +1,34 @@
 package ph.kodego.rara.jamesnico.kodegoraraactivity9.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.StudentListBinding
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAO
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAOSQLImpl
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.StudentItemBinding
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.Student
 
-class StudentAdapter (var students: ArrayList<Student>)
+
+class StudentAdapter(var students: ArrayList<Student>)
     : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>(){
 
     fun addStudent(student: Student){
         students.add(0,student)
         notifyItemInserted(0)
+    }
+
+    fun removeStudent(position: Int){
+        students.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    fun updateStudents(newStudents: ArrayList<Student>){
+        students.clear()
+        students.addAll(newStudents)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
@@ -24,7 +39,7 @@ class StudentAdapter (var students: ArrayList<Student>)
         parent: ViewGroup,
         viewType: Int
     ): StudentAdapter.StudentViewHolder {
-        val itemBinding = StudentListBinding
+        val itemBinding = StudentItemBinding
             .inflate(
                 LayoutInflater.from(parent.context),
                 parent, false)
@@ -36,7 +51,7 @@ class StudentAdapter (var students: ArrayList<Student>)
         holder.bindStudent(students[position])
     }
 
-    inner class StudentViewHolder(private val itemBinding: StudentListBinding)
+    inner class StudentViewHolder(private val itemBinding: StudentItemBinding)
         : RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
 
         var student = Student()
@@ -49,6 +64,19 @@ class StudentAdapter (var students: ArrayList<Student>)
             this.student = student
 
             itemBinding.studentName.setText("${student.lastName}, ${student.firstName}")
+
+            itemBinding.btnDeleteRow.setOnClickListener {
+                Snackbar.make(itemBinding.root,
+                    "Delete by button",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+
+                var dao: StudentDAO = StudentDAOSQLImpl(it.context)
+                bindStudent(student)
+                dao.deleteStudent(student.id)
+                removeStudent(adapterPosition)
+            }
+
             itemBinding.profilePicture.setImageResource(student.img)
         }
 
