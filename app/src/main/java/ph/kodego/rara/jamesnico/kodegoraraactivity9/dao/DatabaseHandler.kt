@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 class DatabaseHandler (context: Context) : SQLiteOpenHelper(context,DATABASENAME,null,DATABASEVERSION){
 
     companion object {
-        private val DATABASEVERSION = 1
+        private val DATABASEVERSION = 2
         private val DATABASENAME = "studentdatabase"
 
         // student table
@@ -19,13 +19,14 @@ class DatabaseHandler (context: Context) : SQLiteOpenHelper(context,DATABASENAME
         val yearstarted = "year_started"
         val deleteStatus = "delete_status"
         
-        // login table
+        // user table
         
-        val tableLogin = "login_table"
-        val loginId = "login_id"
-        val loginUsername = "username"
-        val loginPassword = "password"
-        val loginStatus = "login_status"
+        val tableUser = "user_table"
+        val userId = "user_id"
+        val userUsername = "username"
+        val userPassword = "password"
+        val userEmail = "email"
+        val userStatus = "user_status"
 
     }
 
@@ -73,24 +74,25 @@ class DatabaseHandler (context: Context) : SQLiteOpenHelper(context,DATABASENAME
         db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('Miller', 'Renee')")
         db?.execSQL("Insert into $tableStudents ($studentLastName, $studentFirstName) values ('James', 'Christina')")
 
-        // creating login table
+        // creating user table
         
-        val CREATELOGINTABLE = "CREATE TABLE ${tableLogin} " +
-                "(${loginId} INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "${loginUsername} TEXT, " +
-                "${loginPassword} TEXT, " +
-                "${loginStatus} TEXT)"
+        val CREATEUSERTABLE = "CREATE TABLE ${tableUser} " +
+                "(${userId} INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "${userUsername} TEXT, " +
+                "${userPassword} TEXT, " +
+                "${userEmail} TEXT, " +
+                "${userStatus} TEXT)"
 
-        db?.execSQL(CREATELOGINTABLE)
+        db?.execSQL(CREATEUSERTABLE)
 
-        db?.execSQL("Insert into ${tableLogin} (${loginUsername}, ${loginPassword}) values ('admin', 'admin')")
-        db?.execSQL("Insert into ${tableLogin} (${loginUsername}, ${loginPassword}) values ('1234', '1234')")
-        db?.execSQL("Insert into ${tableLogin} (${loginUsername}, ${loginPassword}) values ('user', 'pass')")
+        db?.execSQL("Insert into ${tableUser} (${userUsername}, ${userPassword}) values ('admin', 'admin')")
+        db?.execSQL("Insert into ${tableUser} (${userUsername}, ${userPassword}) values ('1234', '1234')")
+        db?.execSQL("Insert into ${tableUser} (${userUsername}, ${userPassword}) values ('user', 'pass')")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS $tableStudents")
-        db!!.execSQL("DROP TABLE IF EXISTS $tableLogin")
+        db!!.execSQL("DROP TABLE IF EXISTS $tableUser")
         onCreate(db)
     }
 

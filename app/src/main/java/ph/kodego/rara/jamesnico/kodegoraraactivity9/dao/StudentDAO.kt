@@ -11,6 +11,8 @@ interface StudentDAO {
     fun getStudents() : ArrayList<Student>
     fun updateStudent(studentId: Int, student: Student)
     fun deleteStudent(studentId: Int)
+
+    fun searchStudent(studentName: String) : ArrayList<Student>
 }
 
 class StudentDAOSQLImpl(var context: Context): StudentDAO{
@@ -56,6 +58,7 @@ class StudentDAOSQLImpl(var context: Context): StudentDAO{
                 studentList.add(student)
             }while(cursor.moveToNext())
         }
+        cursor?.close()
         db.close()
         return studentList
     }
@@ -85,5 +88,43 @@ class StudentDAOSQLImpl(var context: Context): StudentDAO{
             "${DatabaseHandler.studentId} = ?",
             values)
         db.close()
+    }
+
+    // search student. not available on sample app
+    override fun searchStudent(studentName: String): ArrayList<Student> {
+        val studentList: ArrayList<Student> = ArrayList()
+
+        val selectQuery = "SELECT ${DatabaseHandler.studentLastName}, " +
+                "${DatabaseHandler.studentFirstName}, " +
+                "${DatabaseHandler.studentId} " +
+                "FROM ${DatabaseHandler.tableStudents} " +
+                "WHERE ${DatabaseHandler.studentFirstName} LIKE '%${studentName}%'" +
+                "OR ${DatabaseHandler.studentLastName} LIKE '%${studentName}%'"
+
+        var databaseHandler:DatabaseHandler = DatabaseHandler(context)
+        val db = databaseHandler.readableDatabase
+        var cursor: Cursor? = null
+
+        try{
+            cursor = db.rawQuery(selectQuery,null)
+        } catch (e: SQLiteException) {
+            db.close()
+            return ArrayList()
+        }
+
+        var student = Student()
+        if(cursor.moveToFirst()) {
+            do {
+                student = Student()
+                student.id = cursor.getInt(2)
+                student.lastName = cursor.getString(0)
+                student.firstName = cursor.getString(1)
+
+                studentList.add(student)
+            }while(cursor.moveToNext())
+        }
+        cursor?.close()
+        db.close()
+        return studentList
     }
 }

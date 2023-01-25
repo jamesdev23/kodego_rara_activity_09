@@ -105,34 +105,38 @@ class StudentAdapter(var students: ArrayList<Student>)
         }
 
         fun showCustomDialogue(context: Context) {
-            val builder = AlertDialog.Builder(context)
-            val dialogUpdateStudentBinding: DialogueUpdateStudentBinding =
-                DialogueUpdateStudentBinding.inflate(LayoutInflater.from(context))
+            context.let {
+                val builder = AlertDialog.Builder(it)
+                val dialogUpdateStudentBinding: DialogueUpdateStudentBinding =
+                    DialogueUpdateStudentBinding.inflate(LayoutInflater.from(it))
 
-            with(dialogUpdateStudentBinding) {
-                studentLastnameUpdate.setText(student.lastName)
-                studentFirstnameUpdate.setText(student.firstName)
-            }
+                with(dialogUpdateStudentBinding) {
+                    studentLastnameUpdate.setText(student.lastName)
+                    studentFirstnameUpdate.setText(student.firstName)
+                }
 
-            with(builder) {
-                setPositiveButton("Update", DialogInterface.OnClickListener { _, _ ->
-                    val dao: StudentDAO = StudentDAOSQLImpl(context)
-                    val updateFirstName = dialogUpdateStudentBinding.studentFirstnameUpdate.text.toString()
-                    val updateLastName = dialogUpdateStudentBinding.studentLastnameUpdate.text.toString()
+                with(builder) {
+                    setPositiveButton("Update", DialogInterface.OnClickListener { _, _ ->
+                        val dao: StudentDAO = StudentDAOSQLImpl(it)
+                        val updateFirstName =
+                            dialogUpdateStudentBinding.studentFirstnameUpdate.text.toString()
+                        val updateLastName =
+                            dialogUpdateStudentBinding.studentLastnameUpdate.text.toString()
 
-                    student.firstName = updateFirstName
-                    student.lastName = updateLastName
+                        student.firstName = updateFirstName
+                        student.lastName = updateLastName
 
-                    dao.updateStudent(student.id, student)
-                    updateStudents(dao.getStudents())
-                    notifyItemChanged(adapterPosition)
-                })
-                setNegativeButton("Cancel", DialogInterface.OnClickListener { _, _ ->
-                    // Do something when user press the positive button
-                })
-                .setView(dialogUpdateStudentBinding.root)
-                .create()
-                .show()
+                        dao.updateStudent(student.id, student)
+                        updateStudents(dao.getStudents())
+                        notifyItemChanged(adapterPosition)
+                    })
+                    setNegativeButton("Cancel", DialogInterface.OnClickListener { _, _ ->
+                        // Do something when user press the positive button
+                    })
+                        .setView(dialogUpdateStudentBinding.root)
+                        .create()
+                        .show()
+                }
             }
 
         }

@@ -41,10 +41,9 @@ class TransactionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dao = activity?.let { StudentDAOSQLImpl(it) }!!
-        students = dao.getStudents()
-
         studentAdapter = StudentAdapter(students)
+        binding.list3.layoutManager = LinearLayoutManager(activity)
+        binding.list3.adapter = studentAdapter
 
         binding.addStudentButton.setOnClickListener {
             val student = Student()
@@ -52,12 +51,13 @@ class TransactionFragment : Fragment() {
             student.firstName = binding.studentFirstname.text.toString()
             student.lastName = binding.studentLastname.text.toString()
 
+            dao = activity?.let { StudentDAOSQLImpl(it) }!!
             dao.addStudent(student)
             students = dao.getStudents()
             studentAdapter.updateStudents(students)
 
             Snackbar.make(binding.root,
-                "Added ${student.lastName}, ${student.firstName} to student list.",
+                "Added ${student.lastName}, ${student.firstName} to List.",
                 Snackbar.LENGTH_SHORT
             ).show()
 

@@ -7,13 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".tab_viewpager.TransactionFragment"
     android:background="@android:color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="10">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:endIconMode="clear_text"
-        android:padding="5sp">
+        android:padding="5sp"
+        android:weightSum="1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/student_firstname"
@@ -28,7 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:endIconMode="clear_text"
-        android:padding="5sp">
+        android:padding="5sp"
+        android:weightSum="1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/student_lastname"
@@ -42,10 +45,18 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/add_student_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="5dp"
         android:padding="8dp"
         android:text="Add"
+        android:layout_weight="1"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
         />
 
 

@@ -7,13 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".tab_viewpager.SearchFragment"
     android:background="@android:color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="10">
 
     <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_student"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:endIconMode="clear_text"
         android:padding="5sp"
+        android:inputType="text"
+        android:weightSum="1"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -23,6 +27,13 @@
         android:layout_margin="5dp"
         android:padding="8dp"
         android:text="Search"
+        android:weightSum="1"
         />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        />
 </LinearLayout>

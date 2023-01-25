@@ -5,22 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
-import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.LoginDAO
-import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.LoginDAOSQLImpl
-import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAO
-import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAOSQLImpl
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.*
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.ActivityLoginBinding
-import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.Login
-import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.Student
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.tab_viewpager.ViewPagerActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var username: String
     private lateinit var password: String
-
-    private lateinit var dao: LoginDAO
-    private var checkLogin: Boolean = false
+    private lateinit var dao: UserDAO
 
     private val launchRegister = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -39,22 +32,26 @@ class LoginActivity : AppCompatActivity() {
 
         // on login button press
         binding.btnLogin.setOnClickListener {
+            var userExist: Boolean = false
+            var passMatched: Boolean = false
 
             username = binding.usernametext.text.toString()
             password = binding.passwordtext.text.toString()
 
+            dao = UserDAOSQLImpl(it.context)
+            userExist = dao.checkUser(username)
+            passMatched = dao.checkPass(password)
 
-            var goToViewPager = Intent(this, ViewPagerActivity::class.java)
+            if(userExist && passMatched) {
+                val goToViewPager = Intent(this, ViewPagerActivity::class.java)
 
-            val bundle = Bundle()
-            bundle.putString("username", username)
-            bundle.putString("password", password)
-            goToViewPager.putExtras(bundle)
-
-            goToViewPager.putExtra("source", "from_login")
-
-            startActivity(goToViewPager)
-            finish()
+                startActivity(goToViewPager)
+                finish()
+            }
+            Snackbar.make(binding.root,
+                "Invalid username or password.",
+                Snackbar.LENGTH_SHORT
+            ).show()
 
         }
 
