@@ -1,15 +1,24 @@
 package ph.kodego.rara.jamesnico.kodegoraraactivity9.adapter
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.NonDisposableHandle.parent
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.R
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAO
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAOSQLImpl
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.DialogueUpdateStudentBinding
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.StudentItemBinding
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.Student
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.tab_viewpager.ListFragment
 
 
 class StudentAdapter(var students: ArrayList<Student>)
@@ -78,6 +87,11 @@ class StudentAdapter(var students: ArrayList<Student>)
             }
 
             itemBinding.profilePicture.setImageResource(student.img)
+
+//            itemBinding.studentName.setOnClickListener{
+//                showCustomDialogue(it.context)
+//            }
+
         }
 
         override fun onClick(v: View?) {
@@ -85,8 +99,45 @@ class StudentAdapter(var students: ArrayList<Student>)
                 "${student.lastName}, ${student.firstName}",
                 Snackbar.LENGTH_SHORT
             ).show()
+
+            // somehow hack-ish. temporary fix til I read docs again
+            showCustomDialogue(v!!.context)
         }
 
+        fun showCustomDialogue(context: Context) {
+            val builder = AlertDialog.Builder(context)
+            val dialogUpdateStudentBinding: DialogueUpdateStudentBinding =
+                DialogueUpdateStudentBinding.inflate(LayoutInflater.from(context))
+
+            with(dialogUpdateStudentBinding) {
+                studentLastnameUpdate.setText(student.lastName)
+                studentFirstnameUpdate.setText(student.firstName)
+            }
+
+            with(builder) {
+                setPositiveButton("Update", DialogInterface.OnClickListener { _, _ ->
+                    val dao: StudentDAO = StudentDAOSQLImpl(context)
+                    val updateFirstName = dialogUpdateStudentBinding.studentFirstnameUpdate.text.toString()
+                    val updateLastName = dialogUpdateStudentBinding.studentLastnameUpdate.text.toString()
+
+                    student.firstName = updateFirstName
+                    student.lastName = updateLastName
+
+                    dao.updateStudent(student.id, student)
+                    updateStudents(dao.getStudents())
+                    notifyItemChanged(adapterPosition)
+                })
+                setNegativeButton("Cancel", DialogInterface.OnClickListener { _, _ ->
+                    // Do something when user press the positive button
+                })
+                .setView(dialogUpdateStudentBinding.root)
+                .create()
+                .show()
+            }
+
+        }
 
     }
+
+
 }

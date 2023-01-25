@@ -37,7 +37,8 @@ class DatabaseHandler (context: Context) : SQLiteOpenHelper(context,DATABASENAME
                 "($studentId INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$studentFirstName TEXT, " +
                 "$studentLastName TEXT, " +
-                "$yearstarted INTEGER)"
+                "$yearstarted INTEGER, " +
+                "$deleteStatus TEXT)"
 
         db?.execSQL(CREATESTUDENTSTABLE)
 

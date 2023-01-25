@@ -42,7 +42,7 @@ class ListFragment : Fragment() {
         dao = activity?.let { StudentDAOSQLImpl(it) }!!
         students = dao.getStudents()
 
-        studentAdapter = StudentAdapter(students,)
+        studentAdapter = StudentAdapter(students)
         binding.list.layoutManager = LinearLayoutManager(activity)
         binding.list.adapter = studentAdapter
 
