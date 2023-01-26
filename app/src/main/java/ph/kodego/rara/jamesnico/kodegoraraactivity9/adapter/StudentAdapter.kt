@@ -138,10 +138,6 @@ class StudentAdapter(var students: ArrayList<Student>)
                         .show()
                 }
             }
-
         }
-
     }
-
-
 }

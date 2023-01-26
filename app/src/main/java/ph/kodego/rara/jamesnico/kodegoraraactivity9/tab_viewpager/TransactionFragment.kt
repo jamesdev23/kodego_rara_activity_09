@@ -56,6 +56,9 @@ class TransactionFragment : Fragment() {
             students = dao.getStudents()
             studentAdapter.updateStudents(students)
 
+            val lastItemPosition = studentAdapter.itemCount-1
+            binding.list3.smoothScrollToPosition(lastItemPosition)
+
             Snackbar.make(binding.root,
                 "Added ${student.lastName}, ${student.firstName} to List.",
                 Snackbar.LENGTH_SHORT

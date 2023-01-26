@@ -18,6 +18,7 @@
         android:padding="5sp"
         android:inputType="text"
         android:weightSum="1"
+        android:contextClickable="true"
         />
 
     <androidx.appcompat.widget.AppCompatButton
