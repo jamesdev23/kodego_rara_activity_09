@@ -4,15 +4,18 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteException
+import android.provider.ContactsContract.Data
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.Student
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.User
 
 interface StudentDAO {
     fun addStudent(student: Student)
     fun getStudents() : ArrayList<Student>
     fun updateStudent(studentId: Int, student: Student)
     fun deleteStudent(studentId: Int)
+    fun searchStudentByLastName(searchString: String) : ArrayList<Student>
 
-    fun searchStudent(studentName: String) : ArrayList<Student>
+    fun registerNewStudent(student: Student, user: User)
 }
 
 class StudentDAOSQLImpl(var context: Context): StudentDAO{
@@ -91,22 +94,30 @@ class StudentDAOSQLImpl(var context: Context): StudentDAO{
     }
 
     // search student. not available on sample app
-    override fun searchStudent(studentName: String): ArrayList<Student> {
+    override fun searchStudentByLastName(searchString: String): ArrayList<Student> {
         val studentList: ArrayList<Student> = ArrayList()
 
-        val selectQuery = "SELECT ${DatabaseHandler.studentLastName}, " +
-                "${DatabaseHandler.studentFirstName}, " +
-                "${DatabaseHandler.studentId} " +
-                "FROM ${DatabaseHandler.tableStudents} " +
-                "WHERE ${DatabaseHandler.studentFirstName} LIKE '%${studentName}%'" +
-                "OR ${DatabaseHandler.studentLastName} LIKE '%${studentName}%'"
+        val columns = arrayOf(DatabaseHandler.studentFirstName,
+            DatabaseHandler.studentLastName,
+            DatabaseHandler.studentId,
+            DatabaseHandler.yearstarted,
+            DatabaseHandler.course
+            )
 
-        var databaseHandler:DatabaseHandler = DatabaseHandler(context)
+        val databaseHandler:DatabaseHandler = DatabaseHandler(context)
         val db = databaseHandler.readableDatabase
+
         var cursor: Cursor? = null
 
         try{
-            cursor = db.rawQuery(selectQuery,null)
+            cursor = db.query(DatabaseHandler.tableStudents,
+            columns,
+                "${DatabaseHandler.studentLastName} like '%${searchString}'",
+                null,
+                null,
+                null,
+                DatabaseHandler.studentLastName
+            )
         } catch (e: SQLiteException) {
             db.close()
             return ArrayList()
@@ -116,15 +127,31 @@ class StudentDAOSQLImpl(var context: Context): StudentDAO{
         if(cursor.moveToFirst()) {
             do {
                 student = Student()
+                student.firstName = cursor.getString(0)
+                student.lastName = cursor.getString(1)
                 student.id = cursor.getInt(2)
-                student.lastName = cursor.getString(0)
-                student.firstName = cursor.getString(1)
-
                 studentList.add(student)
             }while(cursor.moveToNext())
         }
         cursor?.close()
         db.close()
         return studentList
+    }
+
+    override fun registerNewStudent(student: Student, user: User) {
+        val databaseHandler:DatabaseHandler = DatabaseHandler(context)
+        val db = databaseHandler.writableDatabase
+
+        val contentValues = ContentValues()
+        contentValues.put(DatabaseHandler.studentFirstName, student.firstName)
+        contentValues.put(DatabaseHandler.studentLastName, student.lastName)
+
+        val contentValues2 = ContentValues()
+        contentValues2.put(DatabaseHandler.userEmail, user.email)
+        contentValues2.put(DatabaseHandler.userPassword, user.password)
+
+        val success = db.insert(DatabaseHandler.tableStudents,null,contentValues)
+        val success2 = db.insert(DatabaseHandler.tableUser,null,contentValues2)
+        db.close()
     }
 }

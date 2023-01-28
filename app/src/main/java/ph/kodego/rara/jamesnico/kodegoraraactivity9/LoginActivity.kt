@@ -8,12 +8,14 @@ import com.google.android.material.snackbar.Snackbar
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.*
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.ActivityLoginBinding
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.tab_viewpager.ViewPagerActivity
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.utility.PreferenceUtility
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var username: String
     private lateinit var password: String
     private lateinit var dao: UserDAO
+    private lateinit var preferenceUtility: PreferenceUtility
 
     private val launchRegister = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -30,6 +32,10 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        preferenceUtility = PreferenceUtility(applicationContext)
+        binding.usernametext.setText(preferenceUtility.getStringPreferences("username"))
+        binding.passwordtext.setText(preferenceUtility.getStringPreferences("password"))
+
         // on login button press
         binding.btnLogin.setOnClickListener {
             var userExist: Boolean = false
@@ -37,6 +43,10 @@ class LoginActivity : AppCompatActivity() {
 
             username = binding.usernametext.text.toString()
             password = binding.passwordtext.text.toString()
+
+            preferenceUtility.saveStringPreferences("username", binding.usernametext.text.toString())
+            preferenceUtility.saveStringPreferences("password", binding.passwordtext.text.toString())
+
 
             dao = UserDAOSQLImpl(it.context)
             userExist = dao.checkUser(username)
@@ -57,13 +67,13 @@ class LoginActivity : AppCompatActivity() {
 
         // on register button press
         binding.btnRegister.setOnClickListener {
-            var goToRegister = Intent(this, RegisterActivity::class.java)
+            val goToRegister = Intent(this, RegisterActivity::class.java)
             launchRegister.launch(goToRegister)
         }
 
         // on forget password press
         binding.btnForgetpassword.setOnClickListener {
-            var goToForgetPassword = Intent(this, ForgetPasswordActivity::class.java)
+            val goToForgetPassword = Intent(this, ForgetPasswordActivity::class.java)
             launchRegister.launch(goToForgetPassword)
         }
     }

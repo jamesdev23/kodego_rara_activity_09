@@ -7,22 +7,23 @@ import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.NonDisposableHandle.parent
-import ph.kodego.rara.jamesnico.kodegoraraactivity9.R
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAO
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAOSQLImpl
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.DialogueUpdateStudentBinding
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.StudentItemBinding
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.Student
-import ph.kodego.rara.jamesnico.kodegoraraactivity9.tab_viewpager.ListFragment
 
 
 class StudentAdapter(var students: ArrayList<Student>)
-    : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>(){
+    : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>(),
+    Filterable {
+
+    var filteredStudents:List<Student> = ArrayList()
+    val allRecords = ArrayList<Student>()
 
     fun addStudent(student: Student){
         students.add(0,student)
@@ -137,6 +138,30 @@ class StudentAdapter(var students: ArrayList<Student>)
                         .create()
                         .show()
                 }
+            }
+        } // custom dialogue end
+    }
+
+    override fun getFilter(): Filter {
+        return object: Filter(){
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val searchString = constraint.toString()
+
+                if(searchString.trim().isEmpty()){
+                    allRecords
+                }else{
+                    filteredStudents = students.filter {it.lastName.contains(searchString, ignoreCase = true)}
+                }
+                return FilterResults().apply { values = filteredStudents }
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                filteredStudents = if(results?.values == null){
+                    allRecords
+                }else{
+                    results.values as ArrayList<Student>
+                }
+                notifyDataSetChanged()
             }
         }
     }
