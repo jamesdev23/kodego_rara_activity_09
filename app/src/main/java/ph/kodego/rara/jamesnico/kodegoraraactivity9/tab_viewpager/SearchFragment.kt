@@ -39,7 +39,8 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dao = StudentDAOSQLImpl(view.context)
+//        dao = StudentDAOSQLImpl(view.context)
+        dao = activity?.let { StudentDAOSQLImpl(it) }!!
 
         studentAdapter = StudentAdapter(students)
         binding.list2.layoutManager = LinearLayoutManager(activity)

@@ -1,9 +1,13 @@
 package ph.kodego.rara.jamesnico.kodegoraraactivity9
 
+import android.content.ContentProvider
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContentProviderCompat.requireContext
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.ActivityRegisterBinding
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.FragmentListBinding
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.tab_viewpager.ListFragment
 
 class RegisterActivity : AppCompatActivity() {
 
