@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".tab_viewpager.SearchFragment"
-    android:background="@android:color/white"
     android:orientation="vertical"
     android:weightSum="10">
 
@@ -25,6 +24,6 @@
         android:id="@+id/list2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9"
+        android:layout_weight="10"
         />
 </LinearLayout>
