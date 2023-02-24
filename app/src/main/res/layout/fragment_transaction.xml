@@ -49,6 +49,10 @@
         android:layout_margin="5dp"
         android:padding="8dp"
         android:text="Add"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:background="@drawable/custom_button1"
         android:layout_weight="1"
         />
 

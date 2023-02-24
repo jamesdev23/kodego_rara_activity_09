@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:padding="15dp"
+    android:background="@color/indigo"
+    >
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/applogo"
@@ -44,10 +47,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:endIconMode="clear_text"
+        android:padding="5sp"
         app:layout_constraintTop_toBottomOf="@+id/username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:padding="5sp">
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordtext"
@@ -67,6 +71,10 @@
         android:layout_margin="5dp"
         android:padding="8dp"
         android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:background="@drawable/custom_button1"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -79,6 +87,10 @@
         android:layout_marginRight="5dp"
         android:padding="8dp"
         android:text="@string/register"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:background="@drawable/empty_button"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login"
@@ -91,6 +103,10 @@
         android:layout_margin="5dp"
         android:padding="8dp"
         android:text="@string/forget_password"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:background="@drawable/empty_button"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_register" />

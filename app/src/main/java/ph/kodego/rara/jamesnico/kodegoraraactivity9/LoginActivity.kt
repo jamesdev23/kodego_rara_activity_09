@@ -79,6 +79,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        // no code executed to disable back press
+        super.onBackPressed()
     }
 }

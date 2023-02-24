@@ -11,6 +11,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.R
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAO
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.dao.StudentDAOSQLImpl
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.databinding.DialogueUpdateStudentBinding
@@ -75,6 +76,15 @@ class StudentAdapter(var students: ArrayList<Student>)
 
             itemBinding.studentName.setText("${student.lastName}, ${student.firstName}")
 
+            // for student image
+            when (student.img) {
+                1 -> { itemBinding.profilePicture.setImageResource(R.drawable.icon_male) }
+                2 -> { itemBinding.profilePicture.setImageResource(R.drawable.icon_female) }
+                else -> {
+                    itemBinding.profilePicture.setImageResource(student.img)
+                }
+            }
+
             itemBinding.btnDeleteRow.setOnClickListener {
                 Snackbar.make(itemBinding.root,
                     "Delete by button",
@@ -87,7 +97,7 @@ class StudentAdapter(var students: ArrayList<Student>)
                 removeStudent(adapterPosition)
             }
 
-            itemBinding.profilePicture.setImageResource(student.img)
+
 
 //            itemBinding.studentName.setOnClickListener{
 //                showCustomDialogue(it.context)

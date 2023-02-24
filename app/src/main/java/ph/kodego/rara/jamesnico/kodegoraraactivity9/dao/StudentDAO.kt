@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteException
 import android.provider.ContactsContract.Data
+import ph.kodego.rara.jamesnico.kodegoraraactivity9.R
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.Student
 import ph.kodego.rara.jamesnico.kodegoraraactivity9.model.User
 
@@ -26,6 +27,7 @@ class StudentDAOSQLImpl(var context: Context): StudentDAO{
         val contentValues = ContentValues()
         contentValues.put(DatabaseHandler.studentFirstName, student.firstName)
         contentValues.put(DatabaseHandler.studentLastName, student.lastName)
+        contentValues.put(DatabaseHandler.studentImage, R.drawable.placeholder)
 
         val success = db.insert(DatabaseHandler.tableStudents,null,contentValues)
         db.close()
@@ -34,7 +36,8 @@ class StudentDAOSQLImpl(var context: Context): StudentDAO{
     override fun getStudents(): ArrayList<Student> {
         val studentList: ArrayList<Student> = ArrayList()
 
-        val selectQuery = "SELECT ${DatabaseHandler.studentLastName}, " +
+        val selectQuery = "SELECT ${DatabaseHandler.studentImage}, " +
+                "${DatabaseHandler.studentLastName}, " +
                 "${DatabaseHandler.studentFirstName}, " +
                 "${DatabaseHandler.studentId} " +
                 "FROM ${DatabaseHandler.tableStudents}"
@@ -54,9 +57,10 @@ class StudentDAOSQLImpl(var context: Context): StudentDAO{
         if(cursor.moveToFirst()) {
             do {
                 student = Student()
-                student.id = cursor.getInt(2)
-                student.lastName = cursor.getString(0)
-                student.firstName = cursor.getString(1)
+                student.id = cursor.getInt(3)
+                student.firstName = cursor.getString(2)
+                student.lastName = cursor.getString(1)
+                student.img = cursor.getInt(0)
 
                 studentList.add(student)
             }while(cursor.moveToNext())
@@ -100,6 +104,7 @@ class StudentDAOSQLImpl(var context: Context): StudentDAO{
         val columns = arrayOf(DatabaseHandler.studentFirstName,
             DatabaseHandler.studentLastName,
             DatabaseHandler.studentId,
+            DatabaseHandler.studentImage,
             DatabaseHandler.yearstarted,
             DatabaseHandler.course
             )
@@ -130,6 +135,7 @@ class StudentDAOSQLImpl(var context: Context): StudentDAO{
                 student.firstName = cursor.getString(0)
                 student.lastName = cursor.getString(1)
                 student.id = cursor.getInt(2)
+                student.img = cursor.getInt(3)
                 studentList.add(student)
             }while(cursor.moveToNext())
         }
@@ -145,6 +151,7 @@ class StudentDAOSQLImpl(var context: Context): StudentDAO{
         val contentValues = ContentValues()
         contentValues.put(DatabaseHandler.studentFirstName, student.firstName)
         contentValues.put(DatabaseHandler.studentLastName, student.lastName)
+        contentValues.put(DatabaseHandler.studentImage, R.drawable.placeholder)
 
         val contentValues2 = ContentValues()
         contentValues2.put(DatabaseHandler.userEmail, user.email)
